@@ -3,7 +3,7 @@ from .Model.calculator import Calculator
 from tkinter import messagebox
 import tkinter as tk 
 import subprocess
-
+import pickle
 class Logic:
     stats_position = []
     stat_admin_position = []
@@ -15,6 +15,8 @@ class Logic:
         for result in results:
             if username == result[0] and password == result[1]:
                 return True
+            elif username == 'Username':
+                return False
         return False
 
     def check_admin(username, password):
@@ -71,6 +73,8 @@ class Logic:
 
                 found = True
                 break
+            elif username == 'Username':
+                found = False
             else:
                 found = False
         if len(password) < 6:
@@ -89,12 +93,14 @@ class Logic:
         conn2.commit()
         conn2.close()
 
-    def add_health_info(username, gender, age, height, weight):
+    def add_health_info( gender, age, height, weight):
         conn3 = sqlite3.connect(r'/home/spring/Test101/FitnessProject/View/Control/Model/Database/Fitness.db')
         cursor3 = conn3.cursor()
         cursor3.execute("SELECT username, age, height, weight FROM health")
         results = cursor3.fetchall()
         found = False
+        with open("username.txt",'rb') as f:
+            username = pickle.load(f)
         for result in results:
             if username == result[0]:
                 
@@ -121,13 +127,17 @@ class Logic:
 
         conn3.close()
 
-    def display_health(user_name, posx, posy):
+    def display_health(posx, posy):
         conn4 = sqlite3.connect(r'/home/spring/Test101/FitnessProject/View/Control/Model/Database/Fitness.db')
         cursor4 = conn4.cursor()
         cursor4.execute("SELECT username, height, weight, bmi, bmr, bodyfat, lbm FROM health")
         results = cursor4.fetchall()
+        with open("username.txt", 'rb') as f:
+               username = pickle.load(f)
+        print(username)
+        
         for result in results:
-            if result[0] == user_name:
+            if username == result[0]:
                 height = str(result[1])
                 weight = str(result[2])
                 bmi = str(result[3])
@@ -162,10 +172,23 @@ class Logic:
     def quit_program(frame):
             frame.quit()
     
-    def open_db():
+    """def open_db():
         db_browser_path = r'/usr/bin/sqlitebrowser/usr/share/man/man1/sqlitebrowser.1.gz'
         db_file_path = r'/home/spring/Test101/FitnessProject/View/Control/Model/Database/Fitness.db'
 
+        subprocess.Popen(db_browser_path, db_file_path)"""
+   
+
+    
+
+    
+            
+            
+
+            
+
+           
+            
 
 
         

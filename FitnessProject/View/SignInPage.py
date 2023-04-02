@@ -1,6 +1,6 @@
 import tkinter as tk
 from Control.logic import *
-
+import pickle
 
 class SignInPage(tk.Frame):
     
@@ -43,6 +43,8 @@ class SignInPage(tk.Frame):
                 controller.show_frame('AdminPage')
             elif found:
                 messagebox.showinfo(title="Login Success", message="You successfully logged in !")
+                with open("username.txt", 'wb') as f:
+                   pickle.dump(username_entry.get(),f)
             else:
                 messagebox.showerror(title="Error", message="Incorect username or password!")
 
@@ -51,7 +53,7 @@ class SignInPage(tk.Frame):
                 controller.show_frame('HealthInfoPage')
             elif found1 and found and not found2:
                 controller.show_frame('HomePage')
-                Logic.display_health(username_entry.get(), posx =[267, 485], posy= [304, 372, 440])
+                Logic.display_health(posx =[267, 485], posy= [304, 372, 440])
                 
                
            

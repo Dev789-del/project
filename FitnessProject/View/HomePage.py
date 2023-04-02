@@ -27,7 +27,7 @@ class HomePage(tk.Frame):
         stats_button.place(x=29, y=435.1)
 
         self.user_image = tk.PhotoImage(file=r'/home/spring/Test101/FitnessProject/View/Images/User.png')
-        user_button = tk.Button(self, image=self.user_image, border=0, bg='#212121', activebackground='#212121')
+        user_button = tk.Button(self, image=self.user_image, border=0, bg='#212121', activebackground='#212121', command= lambda: [Logic.delete_leftover(self),controller.show_frame('UpdateHealthInfoPage')])
         user_button.place(x=29, y=530.1)
 
         self.noti_image = tk.PhotoImage(file=r'/home/spring/Test101/FitnessProject/View/Images/Notification (off).png')

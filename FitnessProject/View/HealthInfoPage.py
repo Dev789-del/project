@@ -1,7 +1,7 @@
 import tkinter as tk
 from Control.logic import *
 from SignInPage import SignInPage
-
+import sqlite3
 
 class HealthInfoPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -9,8 +9,8 @@ class HealthInfoPage(tk.Frame):
         self.controller = controller
 
         # username_entry = controller.frames['SignInPage'].username_entry
-
-        username_entry = SignInPage.get_username_entry(self)
+        
+        
 
 
         self.frame_photo_3 = tk.PhotoImage(file=r'/home/spring/Test101/FitnessProject/View/Images/Information.png')
@@ -46,6 +46,6 @@ class HealthInfoPage(tk.Frame):
 
         self.submit_box = tk.PhotoImage(file=r'/home/spring/Test101/FitnessProject/View/Images/Submit.png')
         submit_button = tk.Button(self, image=self.submit_box, bd=0, bg='#141414', activebackground='#141414',
-                                  command=lambda: [Logic.add_health_info(username_entry.get(), gender_entry.get(), age_entry.get(), height_entry.get(), weight_entry.get()),controller.show_frame('HomePage'), Logic.display_health(username_entry.get(), posx =[267, 485], posy= [304, 372, 440])])
+                                  command=lambda: [Logic.add_health_info(gender_entry.get(), age_entry.get(), height_entry.get(), weight_entry.get()),controller.show_frame('HomePage'), Logic.display_health(posx =[267, 485], posy= [304, 372, 440])])
         submit_button.place(x=171, y=623)
         

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import sqlite3
+
 import ctypes
 """import pyglet"""
 from SignInPage import *
@@ -8,6 +9,7 @@ from SignUpPage import *
 from HealthInfoPage import *
 from HomePage import *
 from AdminPage import *
+from UpdateHealthInfoPage import *  
 
 """pyglet.font.add_file('GOTHAM-MEDIUM.OTF')"""
 
@@ -33,7 +35,7 @@ class SampleApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
     
         self.frames = {}
-        for F in (SignInPage, SignUpPage, AdminPage, HealthInfoPage, HomePage):
+        for F in (SignInPage, SignUpPage, AdminPage, HealthInfoPage, UpdateHealthInfoPage, HomePage):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
